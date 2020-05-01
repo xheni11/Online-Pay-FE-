@@ -1,0 +1,8 @@
+<div class="dashboard">
+  <div class="card card-w-title ui-g-12">
+    <div>
+      <h1></h1>
+      <app-product [product]="product$ | async" (onBuy)="onBuy($event)"></app-product>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="layout-submenu-content" (click)="onClick($event)">
+  <p-scrollPanel #scroller [style]="{ height: '100%' }">
+    <div class="menu-scroll-content">
+      <ng-content></ng-content>
+    </div>
+  </p-scrollPanel>
+</div>
