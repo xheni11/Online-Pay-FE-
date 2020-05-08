@@ -7,14 +7,13 @@ import { Component, OnInit, Input, OnChanges } from "@angular/core";
   styleUrls: ["./gallery-slider.component.css"],
 })
 export class GallerySliderComponent implements OnInit, OnChanges {
-  @Input() images = [];
-  mainImage: any;
+  @Input() images: any[];
+  @Input() mainImage: any;
   slideIndex: number;
   constructor(private galleryService: GallerySliderService) {}
   ngOnInit(): void {
     // this.loadImages();
     this.slideIndex = 0;
-    this.currentSlide(-1);
   }
   ngOnChanges(): void {}
   loadImages(): void {
@@ -35,7 +34,7 @@ export class GallerySliderComponent implements OnInit, OnChanges {
     const dots = document.getElementsByClassName("images") as HTMLCollectionOf<
       HTMLElement
     >;
-    console.log(this.images.length);
+    const mainImage = document.getElementById("mainImage");
     if (n > this.images.length) {
       this.slideIndex = 1;
     }
@@ -52,5 +51,6 @@ export class GallerySliderComponent implements OnInit, OnChanges {
     if (dots && dots.length > 0) {
       dots[this.slideIndex - 1].className += " active";
     }
+    mainImage.style.display = "none";
   }
 }

@@ -34,7 +34,7 @@ export class AWSService {
   downloadFile() {
     const params = {
       Bucket: aws.bucketName,
-      Key: 1 + "/3EBB0D85-C125-42E7-AAB9-FC1D4A4E1522.jpeg",
+      Key: 1 + "/coolmind.png",
     };
     return this.bucket.getObject(params).promise();
   }

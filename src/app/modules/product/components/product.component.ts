@@ -29,6 +29,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 export class ProductComponent implements OnInit, OnChanges {
   @Input() product: Product;
   @Input() images: any[];
+  @Input() mainImage: any;
   @Output() onBuy: EventEmitter<ProductOrder> = new EventEmitter<
     ProductOrder
   >();

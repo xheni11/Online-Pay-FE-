@@ -1,7 +1,7 @@
 <div class="ui-g-12" [ngClass]="routeAnimationsElements">
   <div class="ui-g">
     <div class="ui-g-12 ui-md-8 ui-lg-8">
-      <app-gallery-slider [images]="images"></app-gallery-slider>
+      <app-gallery-slider [images]="images" [mainImage]="mainImage"></app-gallery-slider>
     </div>
     <div class="ui-g-12 ui-md-6 ui-lg-4">
       <form [formGroup]="productForm" (ngSubmit)="buy()">

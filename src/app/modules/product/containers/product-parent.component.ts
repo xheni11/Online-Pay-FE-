@@ -1,5 +1,4 @@
 import { AuthenticationService } from "./../../../auth/services/authetication.service";
-import { MessageService } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
 import { SelectItem } from "primeng";
 import { FormGroup } from "@angular/forms";
@@ -10,7 +9,6 @@ import { setCurrentRoute } from "../../share/helpers/current-route";
 import { ProductOrder } from "src/app/core/models/requests/product-order.model";
 import { Observable, of } from "rxjs";
 import { LoginResponse } from "src/app/auth/models/login-response.model";
-import { setProductOrder } from "../../share/helpers/temp-order";
 import { AWSService } from "src/app/core/services/AWS.service";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { convertUint8ArrayToBase64 } from "../../share/helpers/image-converter";
@@ -27,7 +25,8 @@ export class ProductParentComponent implements OnInit {
   colors: SelectItem[];
   quantities: SelectItem[];
   imageUrl: SafeResourceUrl;
-  base64String: any;
+  base64String: string;
+  mainImage: any;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -50,6 +49,7 @@ export class ProductParentComponent implements OnInit {
       this.imageUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
         "data:" + data.ContentType + ";base64," + this.base64String
       );
+      this.mainImage = { url: this.imageUrl };
       this.images.push({
         url: this.imageUrl,
       });
