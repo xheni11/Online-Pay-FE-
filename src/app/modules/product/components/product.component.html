@@ -1,15 +1,6 @@
 <div class="ui-g-12" [ngClass]="routeAnimationsElements">
   <div class="ui-g">
     <div class="ui-g-12 ui-md-8 ui-lg-8">
-      <!--       <p-galleria
-        [images]="images"
-        [showCaption]="true"
-        panelHeight="500"
-        panelWidth="500"
-        frameWidth="70"
-        frameHeight="50"
-        [autoPlay]="false"
-      ></p-galleria> -->
       <app-gallery-slider [images]="images"></app-gallery-slider>
     </div>
     <div class="ui-g-12 ui-md-6 ui-lg-4">
@@ -19,13 +10,7 @@
         </div>
         <div class="ui-g-12">
           <div class="ui-g-12 ui-md-10">
-            <input
-              pInputText
-              type="text"
-              formControlName="price"
-              disabled
-              class="input-price"
-            />
+            <input pInputText type="text" formControlName="price" disabled class="input-price" />
           </div>
         </div>
         <div class="ui-g-12">
@@ -36,11 +21,7 @@
             <label>Size:</label>
           </div>
           <div class="ui-g-12 ui-md-10">
-            <p-selectButton
-              [options]="sizes"
-              formControlName="selectedSize"
-              (onChange)="onSizeClick()"
-            >
+            <p-selectButton [options]="sizes" formControlName="selectedSize" (onChange)="onSizeClick()">
             </p-selectButton>
             <app-input-validator [control]="sizeControl" [fieldName]="['Size']">
             </app-input-validator>
@@ -51,14 +32,8 @@
             <label>Color:</label>
           </div>
           <div class="ui-g-12 ui-md-10">
-            <p-selectButton
-              [options]="colors"
-              formControlName="selectedColor"
-            ></p-selectButton>
-            <app-input-validator
-              [control]="colorControl"
-              [fieldName]="['Color']"
-            >
+            <p-selectButton [options]="colors" formControlName="selectedColor"></p-selectButton>
+            <app-input-validator [control]="colorControl" [fieldName]="['Color']">
             </app-input-validator>
           </div>
         </div>
@@ -72,42 +47,22 @@
         </div>
         <div class="ui-g-12">
           <div class="ui-g-12 ui-md-4">
-            <button
-              pButton
-              type="button"
-              label="Buy"
-              icon="fa fa-money"
-              tooltipPosition="top"
-              pTooltip="{{
+            <button pButton type="button" label="Buy" icon="fa fa-money" tooltipPosition="top" pTooltip="{{
                 !productForm.valid ? 'Please fill the fields!' : ''
-              }}"
-              tooltipStyleClass="alert-tooltip"
-              class="ui-button-success button-product"
-              type="submit"
-            ></button>
+              }}" tooltipStyleClass="alert-tooltip" class="ui-button-success button-product" type="submit"></button>
           </div>
           <div class="ui-g-12 ui-md-4">
-            <button
-              pButton
-              type="button"
-              label="Add"
-              icon=" fa fa-shopping-cart"
-              class="ui-button-light button-product"
-            ></button>
+            <button pButton type="button" label="Add" icon=" fa fa-shopping-cart"
+              class="ui-button-light button-product"></button>
           </div>
           <div class="ui-g-12 ui-md-4">
-            <i
-              pTooltip="{{
+            <i pTooltip="{{
                 !isWishButtonClicked
                   ? 'Add to wish list'
                   : 'Remove from wish list'
-              }}"
-              tooltipPosition="top"
-              [className]="
+              }}" tooltipPosition="top" [className]="
                 isWishButtonClicked ? 'fa fa-heart' : ' fa fa-heart-o'
-              "
-              (click)="onAddToWish()"
-            ></i>
+              " (click)="onAddToWish()"></i>
           </div>
         </div>
       </form>

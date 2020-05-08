@@ -19,14 +19,7 @@ import {
 } from "@angular/forms";
 import { Product } from "src/app/core/models/responses/product.model";
 import { ProductOrder } from "src/app/core/models/requests/product-order.model";
-import { encode } from "punycode";
-import { Base64 } from "aws-sdk/clients/ecr";
-import {
-  DomSanitizer,
-  SafeUrl,
-  SafeResourceUrl,
-} from "@angular/platform-browser";
-import { convertUint8ArrayToBase64 } from "../../share/helpers/image-converter";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-product",
@@ -35,23 +28,18 @@ import { convertUint8ArrayToBase64 } from "../../share/helpers/image-converter";
 })
 export class ProductComponent implements OnInit, OnChanges {
   @Input() product: Product;
+  @Input() images: any[];
   @Output() onBuy: EventEmitter<ProductOrder> = new EventEmitter<
     ProductOrder
   >();
   productForm: FormGroup;
-  images: any[];
+
   sizes: SelectItem[];
   colors: SelectItem[];
   quantities: SelectItem[];
   isWishButtonClicked: boolean;
   selectedFiles: FileList;
-  imageUrl: SafeResourceUrl;
-  base64String: any;
-  constructor(
-    private formBuilder: FormBuilder,
-    private awsService: AWSService,
-    private domSanitizer: DomSanitizer
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnChanges(): void {
     this.productForm = this.formBuilder.group({
@@ -60,25 +48,6 @@ export class ProductComponent implements OnInit, OnChanges {
       selectedSize: new FormControl(null, [Validators.required]),
       selectedQuantity: new FormControl(1, [Validators.required]),
       selectedColor: new FormControl(null, [Validators.required]),
-    });
-    this.images = [];
-    this.awsService.downloadFile().then((data) => {
-      this.base64String = convertUint8ArrayToBase64(
-        data.Body,
-        data.ContentLength
-      );
-      this.imageUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "data:" + data.ContentType + ";base64," + this.base64String
-      );
-      this.images.push({
-        url: this.imageUrl,
-      });
-      this.images.push({
-        url: "../../../../assets/images/download (1).jpg",
-      });
-      this.images.push({
-        url: "../../../../assets/images/download (1).jpg",
-      });
     });
 
     this.fillSizes();
@@ -155,10 +124,6 @@ export class ProductComponent implements OnInit, OnChanges {
       const form = { ...this.productForm.value, id: this.product.id };
       this.onBuy.emit(form);
     }
-  }
-  upload() {
-    const file = this.selectedFiles.item(0);
-    this.awsService.uploadFile(file);
   }
 
   selectFile(event) {
