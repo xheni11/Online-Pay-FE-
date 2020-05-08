@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AppComponent } from "../../containers/app/app.component";
+import { AuthenticationService } from "src/app/auth/services/authetication.service";
 
 @Component({
   selector: "app-topbar",
@@ -8,11 +9,12 @@ import { AppComponent } from "../../containers/app/app.component";
 })
 export class TopbarComponent implements OnInit {
   constructor(
-    public app: AppComponent // private authService: AuthenticationService
+    public app: AppComponent,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit() {}
   isUserLoggedIn() {
-    //return this.authService.currentUserValue;
+    return this.authService.currentUserValue;
   }
 }
