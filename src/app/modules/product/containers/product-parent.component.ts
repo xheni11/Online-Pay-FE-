@@ -1,3 +1,4 @@
+import { ImageModel } from "./../../../core/models/responses/image.model";
 import { AuthenticationService } from "./../../../auth/services/authetication.service";
 import { Component, OnInit } from "@angular/core";
 import { SelectItem } from "primeng";
@@ -27,6 +28,7 @@ export class ProductParentComponent implements OnInit {
   imageUrl: SafeResourceUrl;
   base64String: string;
   mainImage: any;
+  productImages: ImageModel[];
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -37,27 +39,28 @@ export class ProductParentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.productImages = [];
+    this.images = [];
     this.product$ = this.productService.getProduct(
       +this.route.snapshot.url[0].path
     );
-    this.images = [];
-    this.awsService.downloadFile().then((data) => {
-      this.base64String = convertUint8ArrayToBase64(
-        data.Body,
-        data.ContentLength
-      );
-      this.imageUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
-        "data:" + data.ContentType + ";base64," + this.base64String
-      );
-      this.mainImage = { url: this.imageUrl };
-      this.images.push({
-        url: this.imageUrl,
-      });
-      this.images.push({
-        url: "../../../../assets/images/download (1).jpg",
-      });
-      this.images.push({
-        url: "../../../../assets/images/download (1).jpg",
+
+    this.product$.subscribe((product) => {
+      const productImages = product.photos;
+      productImages.forEach((item) => {
+        this.awsService.downloadFile(item.name, product.id).then((data) => {
+          this.base64String = convertUint8ArrayToBase64(
+            data.Body,
+            data.ContentLength
+          );
+          this.imageUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
+            "data:" + data.ContentType + ";base64," + this.base64String
+          );
+          this.mainImage = { url: this.imageUrl };
+          this.images.push({
+            url: this.imageUrl,
+          });
+        });
       });
     });
   }

@@ -1,29 +1,15 @@
-<div
-  class="ui-g-12 overview-box overview-box-1"
-  [ngClass]="routeAnimationsElements"
- 
->
+<div class="ui-g-12 overview-box overview-box-1" [ngClass]="routeAnimationsElements">
   <div class="ui-g-12 ui-md-12">
-    <app-photo [src]="src"></app-photo>
+    <app-photo [src]="url"></app-photo>
     <span class="overview-box-text">{{ card.name }}</span>
     <span class="overview-box-name">{{ card.price }}L</span>
     <span class="overview-box-text">
-      <button
-        pButton
-        type="button"
-        label="Add"
-        icon=" fa fa-shopping-cart"
-        class="ui-button-light card-button"
-        [routerLink]="['/product',card.id]"
-      ></button>
-      <i
-        pTooltip="{{
+      <button pButton type="button" label="Add" icon=" fa fa-shopping-cart" class="ui-button-light card-button"
+        [routerLink]="['/product',card.id]"></button>
+      <i pTooltip="{{
           !isWishButtonClicked ? 'Add to wish list' : 'Remove from wish list'
-        }}"
-        tooltipPosition="top"
-        [className]="isWishButtonClicked ? 'fa fa-heart' : ' fa fa-heart-o'"
-        (click)="onAddToWish()"
-      ></i>
+        }}" tooltipPosition="top" [className]="isWishButtonClicked ? 'fa fa-heart' : ' fa fa-heart-o'"
+        (click)="onAddToWish()"></i>
     </span>
   </div>
 </div>

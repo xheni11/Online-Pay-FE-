@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
 import { Component, OnInit, Input } from "@angular/core";
 import { Card } from "../../../../core/models/responses/card.model";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "./../../../../../app/app-module/animations/route.animations";
@@ -12,13 +13,12 @@ import { Product } from "src/app/core/models/responses/product.model";
 export class CardComponent implements OnInit {
   @Input() card: Product;
   @Input() animationStatus = false;
+  @Input() url: SafeResourceUrl;
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
   isWishButtonClicked: boolean;
-  src: string;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.src = "./../../../../../assets/images/heart.png";
     this.isWishButtonClicked = true;
   }
 

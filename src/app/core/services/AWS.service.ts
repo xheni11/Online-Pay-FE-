@@ -1,3 +1,4 @@
+import { ImageModel } from "./../models/responses/image.model";
 import { Injectable } from "@angular/core";
 import { S3 } from "aws-sdk/clients/all";
 import { aws } from "src/app/modules/share/helpers/s3-properties";
@@ -6,15 +7,16 @@ import { aws } from "src/app/modules/share/helpers/s3-properties";
   providedIn: "root",
 })
 export class AWSService {
-  bucket = new S3({
-    accessKeyId: aws.keyId,
-    secretAccessKey: aws.accessKey,
-    region: aws.region,
-  });
-  constructor() {}
+  bucket: S3;
+  constructor() {
+    this.bucket = new S3({
+      accessKeyId: aws.keyId,
+      secretAccessKey: aws.accessKey,
+      region: aws.region,
+    });
+  }
   uploadFile(file) {
     const contentType = file.type;
-
     const params = {
       Bucket: aws.bucketName,
       Key: 1 + file.name,
@@ -31,10 +33,10 @@ export class AWSService {
       return true;
     });
   }
-  downloadFile() {
+  downloadFile(imageName: string, id: number) {
     const params = {
       Bucket: aws.bucketName,
-      Key: 1 + "/coolmind.png",
+      Key: id + "/" + imageName,
     };
     return this.bucket.getObject(params).promise();
   }

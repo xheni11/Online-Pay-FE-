@@ -20,7 +20,6 @@ export class HoverSearchDirective {
   @HostListener("mouseenter")
   @Output()
   onHover() {
-    console.log("hey");
     this.renderer.addClass(this.element.nativeElement, "hover-search ");
     this.host.changeStatus(true);
   }
