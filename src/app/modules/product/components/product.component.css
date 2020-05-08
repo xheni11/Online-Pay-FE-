@@ -1,0 +1,32 @@
+.button-product {
+  width: 120px !important;
+}
+.fa-heart,
+.fa-heart-o {
+  font-size: 40px !important;
+  color: rgb(238, 46, 46) !important;
+}
+h2 {
+  font-weight: bold;
+  font-size: xx-large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+  font-size: 20px !important;
+  opacity: 1 !important;
+}
+.input-price {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+  font-size: 30px !important;
+  font-weight: bolder;
+  opacity: 1 !important;
+}
+.alert-tooltip {
+  background-color: #ff0000 !important;
+}

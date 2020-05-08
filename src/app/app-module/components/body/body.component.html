@@ -1,0 +1,13 @@
+<div class="ui-g-12 ui-fluid">
+  <!--   <p-toast position="top-right"></p-toast>
+
+  <p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog> -->
+  <div class="menubar-container"></div>
+</div>
+<div
+  class="content"
+  [@routeAnimations]="getRouteAnimation(o)"
+  (@routeAnimations.done)="animationEnds($event)"
+>
+  <router-outlet #o="outlet"></router-outlet>
+</div>

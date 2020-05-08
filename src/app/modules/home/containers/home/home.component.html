@@ -1,0 +1,34 @@
+<div class="dashboard">
+  <div class="card card-w-title ui-g-12">
+    <div>
+      <h1>
+        <app-search-shortcut
+          hover-search
+          [animationStatus]="false"
+          (searching)="search($event)"
+        ></app-search-shortcut>
+      </h1>
+      <div class="ui-g-12" [ngClass]="routeAnimationsElements">
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-6 ui-lg-3" *ngFor="let card of products$ | async">
+            <app-card
+              hover-card
+              [animationStatus]="false"
+              [card]="card"
+            ></app-card>
+          </div>
+          <app-paginator
+            [hasPagination]="true"
+            [totalEntities]="[totalEntities]"
+            [totalPages]="totalPages"
+            [currentPage]="currentPage"
+            [perPage]="perPage"
+            (onNext)="onNextPage($event)"
+            (onPage)="onPage($event)"
+            (onPrev)="onPrevPage($event)"
+          ></app-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+:host {
+  cursor: pointer;
+  &.hover-card {
+    .overview-box {
+      box-shadow: 4px 0px 22px -9px rgba(0, 0, 0, 0.2);
+      transform: scale(1.04);
+    }
+  }
+
+  .overview-box {
+    box-shadow: 4px 0px 22px -9px rgba(0, 0, 0, 0.14);
+    transition: box-shadow, transform 100ms ease-in-out;
+  }
+}
+.overview-box-text {
+  font-size: large !important;
+}
+.overview-box-name {
+  font-size: x-large !important;
+  font-weight: bold !important;
+}
+.card-button {
+  width: 100px !important;
+}
+i {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+
+.fa-heart,
+.fa-heart-o {
+  font-size: 40px !important;
+  color: rgb(238, 46, 46) !important;
+}

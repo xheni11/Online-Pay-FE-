@@ -1,0 +1,19 @@
+<div
+  class="layout-wrapper"
+  [ngClass]="{
+    'layout-wrapper-menu-active': sidebarActive,
+    'layout-overlay-menu': overlay,
+    dark: uiMode === 'dark',
+    light: uiMode === 'light'
+  }"
+>
+  <div *ngIf="currentRoute !== '/login'">
+    <app-topbar></app-topbar>
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="layout-content">
+    <app-body></app-body>
+    <app-footer *ngIf="currentRoute !== '/login'"></app-footer>
+  </div>
+</div>

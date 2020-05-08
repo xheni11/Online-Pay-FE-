@@ -1,0 +1,38 @@
+:host {
+  cursor: pointer;
+  &.hover-search {
+    .search-item input {
+      box-shadow: 4px 0px 22px -9px rgba(0, 0, 0, 0.2);
+      transform: scale(1.01);
+    }
+  }
+  width: 100%;
+  label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .search-item {
+    position: relative;
+    color: #777777;
+  }
+  .search-item i {
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    margin-right: 0.4em;
+  }
+  .search-item input {
+    background: #ffffff;
+    padding: 0.5em;
+    border: 1px solid #cfcfcf;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    border-radius: 3px;
+    appearance: none;
+    font-size: 13px;
+    color: #777777;
+    padding-left: 20px;
+    width: 100%;
+  }
+}

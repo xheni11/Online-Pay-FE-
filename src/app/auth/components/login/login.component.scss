@@ -1,0 +1,11 @@
+body {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+
+  @media only screen and (max-width: 768px) {
+    position: fixed;
+    left: 8%;
+    right: 8%;
+  }
+}

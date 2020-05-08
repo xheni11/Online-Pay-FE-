@@ -1,0 +1,34 @@
+<div
+  class="layout-sidebar"
+  [ngStyle]="{ overflow: app.sidebarActive ? 'hidden' : 'visible' }"
+  (click)="app.onSidebarClick($event)"
+>
+  <div class="layout-tabmenu">
+    <ul class="layout-tabmenu-nav">
+      <li [ngClass]="{ 'active-item': app.activeTabIndex === 0 }">
+        <a href="#" class="tabmenuitem-link" (click)="app.onTabClick($event, 0)"
+          ><i class="pi pi-home"></i
+        ></a>
+        <div class="layout-tabmenu-tooltip">
+          <div class="layout-tabmenu-tooltip-arrow"></div>
+          <div class="layout-tabmenu-tooltip-text">Dashboard</div>
+        </div>
+      </li>
+    </ul>
+    <div class="layout-tabmenu-contents">
+      <div
+        class="layout-tabmenu-content"
+        [ngClass]="{
+          'layout-tabmenu-content-active': app.activeTabIndex === 0
+        }"
+      >
+        <div class="layout-submenu-title clearfix">
+          <span>Home</span>
+        </div>
+        <app-sidebar-tab-content>
+          <app-menu [menuType]="dashboardMenu"></app-menu>
+        </app-sidebar-tab-content>
+      </div>
+    </div>
+  </div>
+</div>
