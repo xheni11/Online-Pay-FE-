@@ -1,5 +1,6 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+import { ImageModel } from "./image.model";
 import { ProductSize } from "src/app/core/models/responses/product-size.model";
-import { Currency } from "./currency.model";
 import { ProductMaterial } from "./product-material.model";
 import { ProductCategory } from "./product-category.model";
 
@@ -15,4 +16,7 @@ export interface Product {
   materialDto: ProductMaterial;
   colors: Color[];
   sizes: ProductSize[];
+  photos: ImageModel[];
+  photo: ImageModel;
+  url: SafeResourceUrl;
 }

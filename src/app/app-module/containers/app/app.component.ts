@@ -11,8 +11,7 @@ import {
   OnInit,
   Renderer2,
 } from "@angular/core";
-import { LoginResponse } from 'src/app/auth/models/login-response.model';
-
+import { LoginResponse } from "src/app/auth/models/login-response.model";
 
 enum MenuOrientation {
   STATIC,
@@ -63,7 +62,7 @@ export class AppComponent
   constructor(
     public renderer: Renderer2,
     private route: Router,
-    private elRef: ElementRef,
+    private authenticationService: AuthenticationService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -220,7 +219,7 @@ export class AppComponent
   }
 
   logout() {
-    //this.authenticationService.logout();
+    this.authenticationService.logout();
     // this.router.navigate(['/login']);
   }
 }

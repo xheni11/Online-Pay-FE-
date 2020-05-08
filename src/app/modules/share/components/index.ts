@@ -1,3 +1,4 @@
+import { GallerySliderComponent } from "./gallery-slider/gallery-slider.component";
 import { InputValidatorComponent } from "./input-validator/input-validator.component";
 import { AddButtonComponent } from "./add-button/add-button.component";
 import { PaginatorComponent } from "./paginator/paginator.component";
@@ -8,4 +9,5 @@ export const components = [
   PaginatorComponent,
   AddButtonComponent,
   InputValidatorComponent,
+  GallerySliderComponent,
 ];

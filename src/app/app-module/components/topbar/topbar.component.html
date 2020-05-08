@@ -3,26 +3,16 @@
     <span class="pi pi-angle-left"></span>
   </a>
   <a class="morpheus-logo-link" href="#">
-    <img
-      src="assets/layout/images/morpheus-logo-{{ app.theme }}.svg"
-      class="morpheus-logo"
-    />
+    <img src="assets/layout/images/morpheus-logo-{{ app.theme }}.svg" class="morpheus-logo" />
     <span class="morpheus-logo-text">
       {{ app.title }}
     </span>
   </a>
 
-  <a
-    id="topbar-menu-button"
-    href="#"
-    (click)="app.onTopbarMenuButtonClick($event)"
-  >
+  <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
     <em class="pi pi-bars"></em>
   </a>
-  <ul
-    class="topbar-menu fadeInDown"
-    [ngClass]="{ 'topbar-menu-visible': app.topbarMenuActive }"
-  >
+  <ul class="topbar-menu fadeInDown" [ngClass]="{ 'topbar-menu-visible': app.topbarMenuActive }">
     <!--     <li
       #search
       class="search-item"
@@ -35,12 +25,8 @@
       </span>
     </li> -->
 
-    <li
-      #profile
-      class="profile-item"
-      [ngClass]="{ 'active-topmenuitem': app.activeTopbarItem === profile }"
-      id="profile"
-    >
+    <li #profile class="profile-item" [ngClass]="{ 'active-topmenuitem': app.activeTopbarItem === profile }"
+      id="profile">
       <a href="#" (click)="app.onTopbarItemClick($event, profile)">
         <div class="profile-image">
           <i class="pi pi-user" style="font-size: 3em;"></i>
@@ -49,24 +35,35 @@
       </a>
 
       <ul class="fadeInDown">
-        <li role="menuitem">
-          <a [routerLink]="['/profile']">
-            <em class="pi pi-fw pi-user"></em>
-            <span>Profil</span>
-          </a>
-        </li>
-        <li role="menuitem">
-          <a [routerLink]="['/change-password']">
-            <em class="pi pi-fw pi-lock"></em>
-            <span>Change Password</span>
-          </a>
-        </li>
-        <li role="menuitem">
-          <a href="#" (click)="app.onTopbarSubItemClick($event)">
-            <em class="pi pi-fw pi-sign-out"></em>
-            <span>Logout</span>
-          </a>
-        </li>
+        <div *ngIf="isUserLoggedIn()">
+          <li role="menuitem">
+            <a [routerLink]="['/profile']">
+              <em class="pi pi-fw pi-user"></em>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li role="menuitem">
+            <a [routerLink]="['/change-password']">
+              <em class="pi pi-fw pi-lock"></em>
+              <span>Change Password</span>
+            </a>
+          </li>
+          <li role=" menuitem">
+            <a href="#" (click)="app.onTopbarSubItemClick($event)">
+              <em class="pi pi-fw pi-sign-out"></em>
+              <span>Logout</span>
+            </a>
+          </li>
+        </div>
+        <div *ngIf="!isUserLoggedIn()">
+          <li role="menuitem">
+            <a [routerLink]="['/login']">
+              <em class="pi pi-fw pi-user"></em>
+              <span>Log In</span>
+            </a>
+          </li>
+
+        </div>
       </ul>
     </li>
   </ul>

@@ -1,6 +1,15 @@
+import { AWSService } from "./../../../core/services/AWS.service";
 import { Color } from "../../../core/models/responses/color.model";
 import { ProductSize } from "../../../core/models/responses/product-size.model";
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  DoCheck,
+} from "@angular/core";
 import { SelectItem } from "primeng";
 import {
   FormBuilder,
@@ -10,72 +19,55 @@ import {
 } from "@angular/forms";
 import { Product } from "src/app/core/models/responses/product.model";
 import { ProductOrder } from "src/app/core/models/requests/product-order.model";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
   styleUrls: ["./product.component.css"],
 })
-export class ProductComponent implements OnInit,OnChanges {
+export class ProductComponent implements OnInit, OnChanges {
   @Input() product: Product;
+  @Input() images: any[];
+  @Input() mainImage: any;
   @Output() onBuy: EventEmitter<ProductOrder> = new EventEmitter<
     ProductOrder
   >();
   productForm: FormGroup;
-  images: any[];
   sizes: SelectItem[];
   colors: SelectItem[];
   quantities: SelectItem[];
   isWishButtonClicked: boolean;
+  selectedFiles: FileList;
   constructor(private formBuilder: FormBuilder) {}
+
   ngOnChanges(): void {
     this.productForm = this.formBuilder.group({
-      name: new FormControl(this.product?this.product.name:"", []),
-      price: new FormControl(this.product?this.product.price:'', []),
+      name: new FormControl(this.product ? this.product.name : "", []),
+      price: new FormControl(this.product ? this.product.price : "", []),
       selectedSize: new FormControl(null, [Validators.required]),
       selectedQuantity: new FormControl(1, [Validators.required]),
       selectedColor: new FormControl(null, [Validators.required]),
     });
 
     this.fillSizes();
-    if(this.product){
-    this.colors = [
-      ...this.product.colors.map((item: Color) => {
-        return {
-          id: item.id,
-          label: item.name,
-          value: { ...item },
-        };
-      }),
-    ];}
-    this.images = [];
-
-    this.images.push({
-      source: "../../../../../assets/images/heart.png",
-      alt: "Description for Image 9",
-      title: "Title 9",
-    });
-    this.images.push({
-      source: "../../../../../assets/images/heart.jpg",
-      alt: "Description for Image 10",
-      title: "Title 10",
-    });
-    this.images.push({
-      source: "../../../../../assets/images/heart.jpg",
-      alt: "Description for Image 11",
-      title: "Title 11",
-    });
-    this.images.push({
-      source: "../../../../../assets/images/heart.jpg",
-      alt: "Description for Image 12",
-      title: "Title 12",
-    });
+    if (this.product) {
+      this.colors = [
+        ...this.product.colors.map((item: Color) => {
+          return {
+            id: item.id,
+            label: item.name,
+            value: { ...item },
+          };
+        }),
+      ];
+    }
   }
 
   ngOnInit() {
     this.isWishButtonClicked = false;
-
   }
+
   get sizeControl() {
     return this.productForm.get("selectedSize") as FormControl;
   }
@@ -102,16 +94,17 @@ export class ProductComponent implements OnInit,OnChanges {
   }
 
   fillSizes() {
-    if(this.product){
-    this.sizes = [
-      ...this.product.sizes.map((item: ProductSize) => {
-        return {
-          id: item.id,
-          label: item.value,
-          value: { ...item },
-        };
-      }),
-    ];}
+    if (this.product) {
+      this.sizes = [
+        ...this.product.sizes.map((item: ProductSize) => {
+          return {
+            id: item.id,
+            label: item.value,
+            value: { ...item },
+          };
+        }),
+      ];
+    }
   }
   onColorClick() {
     let colorId = this.productForm.value.selectedColor.id;
@@ -128,8 +121,12 @@ export class ProductComponent implements OnInit,OnChanges {
   }
   buy() {
     if (this.productForm.valid) {
-      const form = { ...this.productForm.value,id:this.product.id };
+      const form = { ...this.productForm.value, id: this.product.id };
       this.onBuy.emit(form);
     }
+  }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
   }
 }

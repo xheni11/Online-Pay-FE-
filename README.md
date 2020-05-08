@@ -1,2 +1,1 @@
-# onlineshop-fe
-Angular project
+# angular-online-pay
