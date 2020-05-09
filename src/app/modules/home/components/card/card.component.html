@@ -7,8 +7,8 @@
       <button pButton type="button" label="Add" icon=" fa fa-shopping-cart" class="ui-button-light card-button"
         [routerLink]="['/product',card.id]"></button>
       <i pTooltip="{{
-          !isWishButtonClicked ? 'Add to wish list' : 'Remove from wish list'
-        }}" tooltipPosition="top" [className]="isWishButtonClicked ? 'fa fa-heart' : ' fa fa-heart-o'"
+          isWishButtonClicked ? 'Add to wish list' : 'Remove from wish list'
+        }}" tooltipPosition="top" [className]="!isWishButtonClicked ? 'fa fa-heart' : ' fa fa-heart-o'"
         (click)="onAddToWish()"></i>
     </span>
   </div>

@@ -4,7 +4,7 @@
       <app-gallery-slider [images]="images" [mainImage]="mainImage"></app-gallery-slider>
     </div>
     <div class="ui-g-12 ui-md-6 ui-lg-4">
-      <form [formGroup]="productForm" (ngSubmit)="buy()">
+      <form [formGroup]="productForm" >
         <div class="ui-g-12">
           <input pInputText type="text" formControlName="name" disabled />
         </div>
@@ -49,7 +49,7 @@
           <div class="ui-g-12 ui-md-4">
             <button pButton type="button" label="Buy" icon="fa fa-money" tooltipPosition="top" pTooltip="{{
                 !productForm.valid ? 'Please fill the fields!' : ''
-              }}" tooltipStyleClass="alert-tooltip" class="ui-button-success button-product" type="submit"></button>
+              }}" tooltipStyleClass="alert-tooltip" class="ui-button-success button-product" (click)="buy()"></button>
           </div>
           <div class="ui-g-12 ui-md-4">
             <button pButton type="button" label="Add" icon=" fa fa-shopping-cart"

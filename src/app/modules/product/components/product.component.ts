@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.productForm = this.formBuilder.group({
       name: new FormControl(this.product ? this.product.name : "", []),
-      price: new FormControl(this.product ? this.product.price : "", []),
+      price: new FormControl(this.product ? this.product.price+" EUR" : "", []),
       selectedSize: new FormControl(null, [Validators.required]),
       selectedQuantity: new FormControl(1, [Validators.required]),
       selectedColor: new FormControl(null, [Validators.required]),
