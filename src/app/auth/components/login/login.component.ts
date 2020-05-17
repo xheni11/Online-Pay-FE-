@@ -1,10 +1,10 @@
-import { LoginRequest } from './../../models/login-request.model';
+import { LoginRequest } from "./../../models/login-request.model";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from "../../services/authetication.service";
-import { getCurrentRoute } from "src/app/modules/share/helpers/current-route";
-import { first } from 'rxjs/operators';
+import { getCurrentRoute } from "src/app/modules/share/helpers/functions/current-route";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-login",
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error = "";
   rememberMe: boolean;
-  loginReq:LoginRequest;
+  loginReq: LoginRequest;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.loginReq={username:this.f.userName.value,password: this.f.password.value};
+    this.loginReq = {
+      username: this.f.userName.value,
+      password: this.f.password.value,
+    };
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -65,7 +68,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.returnUrl=getCurrentRoute()?getCurrentRoute():'/home';
+          this.returnUrl = getCurrentRoute() ? getCurrentRoute() : "/home";
           this.router.navigate([this.returnUrl]);
         },
         (error) => {
@@ -74,6 +77,8 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       );
-    
+  }
+  onSignUp() {
+    this.router.navigate(["/signUp"]);
   }
 }

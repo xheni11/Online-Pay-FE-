@@ -1,9 +1,8 @@
 import { SafeResourceUrl } from "@angular/platform-browser";
 import { Component, OnInit, Input } from "@angular/core";
-import { Card } from "../../../../core/models/responses/card.model";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "./../../../../../app/app-module/animations/route.animations";
 import { Router } from "@angular/router";
-import { Product } from "src/app/core/models/responses/product.model";
+import { ProductModel } from "src/app/core/models/responses/product.model";
 
 @Component({
   selector: "app-card",
@@ -11,7 +10,7 @@ import { Product } from "src/app/core/models/responses/product.model";
   styleUrls: ["./card.component.scss"],
 })
 export class CardComponent implements OnInit {
-  @Input() card: Product;
+  @Input() card: ProductModel;
   @Input() animationStatus = false;
   @Input() url: SafeResourceUrl;
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;

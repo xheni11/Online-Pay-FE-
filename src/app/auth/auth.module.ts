@@ -9,9 +9,6 @@ import { Routes, RouterModule } from "@angular/router";
 // components
 import * as fromComponents from "./components";
 
-// Services
-import * as fromServices from "./services";
-
 // routes
 export const ROUTES: Routes = [
   {
@@ -24,7 +21,6 @@ export const ROUTES: Routes = [
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(ROUTES)],
   declarations: [...fromComponents.components],
-  providers: [...fromServices.services],
   exports: [...fromComponents.components],
 })
 export class AuthModule {}

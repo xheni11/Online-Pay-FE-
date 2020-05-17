@@ -11,8 +11,8 @@ export class PaginatorComponent implements OnInit {
   @Input() perPage: number;
   @Input() totalPages: number;
   @Input() hasPagination: boolean;
-  @Output() onNext: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() onPrev: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onNext: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onPrev: EventEmitter<number> = new EventEmitter<number>();
   @Output() onPage: EventEmitter<number> = new EventEmitter<number>();
   columnMaps: {
     columnName: string;
@@ -23,12 +23,12 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit() {}
 
-  goNext() {
-    this.onNext.emit(true);
+  goNext(page: number) {
+    this.onNext.emit(page);
   }
 
-  goPrev() {
-    this.onPrev.emit(true);
+  goPrev(page: number) {
+    this.onPrev.emit(page);
   }
 
   goPage(page: number) {
@@ -36,11 +36,11 @@ export class PaginatorComponent implements OnInit {
   }
 
   getMin(): number {
-    return this.perPage * this.currentPage - this.perPage + 1;
+    return this.perPage * (this.currentPage + 1) - this.perPage + 1;
   }
 
   getMax(): number {
-    let max = this.perPage * this.currentPage;
+    let max = this.perPage * (this.currentPage + 1);
     if (max > this.totalEntities) {
       max = this.totalEntities;
     }
@@ -48,7 +48,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   lastPage(): boolean {
-    return this.perPage * this.currentPage > this.totalEntities - 1;
+    return this.perPage * (this.currentPage + 1) > this.totalEntities - 1;
   }
 
   listPages(): number[] {

@@ -1,6 +1,6 @@
 <div class="form-group">
   <div *ngIf="showErrorMsg()">
-    <div class="invalid-feedback" *ngFor="let error of listOfErrors()">
+    <div *ngFor="let error of listOfErrors()">
       <p-message severity="error" text="{{error}}"> </p-message>
     </div>
   </div>

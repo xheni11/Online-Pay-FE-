@@ -2,10 +2,7 @@
 
 <body class="login-body">
   <div class="login-panel ui-fluid">
-    <div
-      class="ui-g login-container"
-      style="padding: 20%;padding-bottom:3%;padding-top:12%; "
-    >
+    <div class="ui-g login-container" style="padding: 20%;padding-bottom:3%;padding-top:12%; ">
       <div class="ui-g-12 logo-container">
         <a class="morpheus-logo-link" routerLink="/login">
           <span class="morpheus-logo-text">
@@ -13,42 +10,38 @@
           </span>
         </a>
       </div>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm">
         <div class="ui-g-12">
-          <input
-            type="text"
-            formControlName="userName"
-            autocomplete="off"
-            class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-            placeholder="Username"
-          />
+          <input type="text" formControlName="userName" autocomplete="off"
+            class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Username" />
         </div>
         <div class="ui-g-12">
-          <input
-            type="password"
-            formControlName="password"
-            autocomplete="off"
-            class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-            placeholder="Password"
-          />
+          <input type="password" formControlName="password" autocomplete="off"
+            class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Password" />
         </div>
-        <div class="ui-g-12 chkbox-container">
+        <!--         <div class="ui-g-12 chkbox-container">
           <input
             type="checkbox"
             id="remember-me"
             (change)="onCheckChange($event)"
           />
           <label for="remember-me">Remember Me</label>
-        </div>
+        </div> -->
         <div class="ui-g-12 button-container">
-          <button
-            type="submit"
-            (click)="onSubmit()"
-            class="ui-button green-btn ui-button-raised ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-          >
-            <span class="ui-button-icon-left ui-c fa fa-fw fa-user"></span>
-            <span class="ui-button-text ui-c">Sign In</span>
-          </button>
+          <div class="ui-g-6">
+            <button (click)="onSubmit()"
+              class="ui-button ui-button-light ui-widget ui-state-default  ui-button-text-icon-left">
+              <span class="ui-button-icon-left ui-c fa fa-fw fa-user"></span>
+              <span class="ui-button-text ui-c">Log in</span>
+            </button>
+          </div>
+          <div class="ui-g-6">
+            <button (click)="onSignUp()"
+              class="ui-button  ui-button-secondary ui-widget ui-state-default  ui-button-text-icon-left">
+              <span class="ui-button-icon-left ui-c fa fa-fw fa-user-plus"></span>
+              <span class="ui-button-text ui-c">Sign up</span>
+            </button>
+          </div>
         </div>
       </form>
     </div>

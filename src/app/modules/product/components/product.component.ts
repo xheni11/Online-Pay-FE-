@@ -1,6 +1,5 @@
-import { AWSService } from "./../../../core/services/AWS.service";
-import { Color } from "../../../core/models/responses/color.model";
-import { ProductSize } from "../../../core/models/responses/product-size.model";
+import { ColorModel } from "../../../core/models/responses/color.model";
+import { ProductSizeModel } from "../../../core/models/responses/product-size.model";
 import {
   Component,
   OnInit,
@@ -8,7 +7,6 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  DoCheck,
 } from "@angular/core";
 import { SelectItem } from "primeng";
 import {
@@ -17,9 +15,8 @@ import {
   Validators,
   FormControl,
 } from "@angular/forms";
-import { Product } from "src/app/core/models/responses/product.model";
-import { ProductOrder } from "src/app/core/models/requests/product-order.model";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { ProductModel } from "src/app/core/models/responses/product.model";
+import { ProductOrderModel } from "src/app/core/models/requests/product-order.model";
 
 @Component({
   selector: "app-product",
@@ -27,11 +24,11 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
   styleUrls: ["./product.component.css"],
 })
 export class ProductComponent implements OnInit, OnChanges {
-  @Input() product: Product;
+  @Input() product: ProductModel;
   @Input() images: any[];
   @Input() mainImage: any;
-  @Output() onBuy: EventEmitter<ProductOrder> = new EventEmitter<
-    ProductOrder
+  @Output() onBuy: EventEmitter<ProductOrderModel> = new EventEmitter<
+    ProductOrderModel
   >();
   productForm: FormGroup;
   sizes: SelectItem[];
@@ -44,7 +41,10 @@ export class ProductComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.productForm = this.formBuilder.group({
       name: new FormControl(this.product ? this.product.name : "", []),
-      price: new FormControl(this.product ? this.product.price+" EUR" : "", []),
+      price: new FormControl(
+        this.product ? this.product.price + " EUR" : "", //TODO add currency
+        []
+      ),
       selectedSize: new FormControl(null, [Validators.required]),
       selectedQuantity: new FormControl(1, [Validators.required]),
       selectedColor: new FormControl(null, [Validators.required]),
@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit, OnChanges {
     this.fillSizes();
     if (this.product) {
       this.colors = [
-        ...this.product.colors.map((item: Color) => {
+        ...this.product.colors.map((item: ColorModel) => {
           return {
             id: item.id,
             label: item.name,
@@ -83,7 +83,7 @@ export class ProductComponent implements OnInit, OnChanges {
     let sizeId = this.productForm.value.selectedSize.id;
     let size = this.product.sizes.find((size) => size.id == sizeId);
     this.colors = [
-      ...size.colors.map((color: Color) => {
+      ...size.colors.map((color: ColorModel) => {
         return {
           id: color.id,
           label: color.name,
@@ -96,7 +96,7 @@ export class ProductComponent implements OnInit, OnChanges {
   fillSizes() {
     if (this.product) {
       this.sizes = [
-        ...this.product.sizes.map((item: ProductSize) => {
+        ...this.product.sizes.map((item: ProductSizeModel) => {
           return {
             id: item.id,
             label: item.value,
@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit, OnChanges {
     let colorId = this.productForm.value.selectedColor.id;
     let color = this.product.colors.find((color) => color.id == colorId);
     this.sizes = [
-      ...color.sizes.map((size: ProductSize) => {
+      ...color.sizes.map((size: ProductSizeModel) => {
         return {
           id: size.id,
           label: size.value,

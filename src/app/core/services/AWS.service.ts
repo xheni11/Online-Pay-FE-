@@ -1,7 +1,7 @@
 import { ImageModel } from "./../models/responses/image.model";
 import { Injectable } from "@angular/core";
 import { S3 } from "aws-sdk/clients/all";
-import { aws } from "src/app/modules/share/helpers/s3-properties";
+import { aws } from "src/app/modules/share/helpers/constants/s3-properties";
 
 @Injectable({
   providedIn: "root",

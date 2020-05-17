@@ -1,4 +1,5 @@
-import { guards, AuthGuard } from './../auth/guards/index';
+import { ShippingInformationModule } from "./../modules/shipping-information/shipping-information.module";
+import { guards, AuthGuard } from "./../auth/guards/index";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
@@ -27,6 +28,21 @@ const routes: Routes = [
       import("../modules/order/order.module").then((m) => m.OrderModule),
     data: {},
     canActivate: [AuthGuard],
+  },
+  {
+    path: "shippingInformation",
+    loadChildren: () =>
+      import(
+        "../modules/shipping-information/shipping-information.module"
+      ).then((m) => m.ShippingInformationModule),
+    data: {},
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "signUp",
+    loadChildren: () =>
+      import("../modules/sign-up/sign-up.module").then((m) => m.SignUpModule),
+    data: {},
   },
 ];
 

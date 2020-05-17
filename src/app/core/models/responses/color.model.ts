@@ -1,7 +1,7 @@
-import { ProductSize } from "./product-size.model";
-export interface Color {
+import { ProductSizeModel } from "./product-size.model";
+export interface ColorModel {
   id: number;
   name: string;
   hexCode: string;
-  sizes: ProductSize[];
+  sizes: ProductSizeModel[];
 }

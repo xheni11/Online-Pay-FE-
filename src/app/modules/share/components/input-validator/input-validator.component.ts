@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnChanges } from "@angular/core";
 import { AbstractControl } from "@angular/forms";
 
 @Component({
@@ -14,24 +14,22 @@ export class InputValidatorComponent implements OnInit {
   @Input() patternText?: string;
   @Input() min?: number;
   private readonly errorMessages = {
-    required: () => 'Fusha "' + this.fieldName + '" është e detyrueshme!',
+    required: () => 'Field "' + this.fieldName + '" is required!',
     minlength: () =>
-      "Minimumi i karakterve të lejuara është " + this.minLength + "! ",
+      "Minimum of characters allowed is  " + this.minLength + "! ",
     maxlength: () =>
-      "Maksimumi i karakterve të lejuara është " + this.maxLength + "! ",
+      "Maximum of characters allowed is " + this.maxLength + "! ",
     pattern: () => 'Fusha "' + this.fieldName + this.patternText + "!",
-    min: () => "Minimumi që mund të vendosni është " + this.min + "!",
-    max: () => "Maksimumi që mund të vendosni u tejkalua!",
-    email: () => 'Fusha "Email" nuk është në formatin e duhur!',
-    usernameTaken: () => "Ekziston një përdorues tjetër me këtë emër!",
-    internalIdTaken: () =>
-      "Ekziston një " + this.patternText + " tjetër me këtë Internal Id!",
-    mustMatch: () => "Duhet te perputhen fjalekalimet!",
+    min: () => "The minimum required is  " + this.min + "!",
+    max: () => "The maximum required is over!",
+    email: () => 'Field "Email" is not in the required format!',
+    mustMatch: () => "Passwords must match!",
   };
 
   constructor() {}
 
   ngOnInit() {}
+
   showErrorMsg(): boolean {
     return this.control.touched && this.control.errors != null;
   }

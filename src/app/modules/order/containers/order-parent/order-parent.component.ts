@@ -1,8 +1,6 @@
-import { ActivatedRoute } from "@angular/router";
-import { ProductService } from "./../../../../core/services/product.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ROUTE_ANIMATIONS_ELEMENTS } from "src/app/app-module/animations/route.animations";
-import { ProductOrder } from "src/app/core/models/requests/product-order.model";
+import { ProductOrderModel } from "src/app/core/models/requests/product-order.model";
 
 @Component({
   selector: "app-order-parent",
@@ -11,11 +9,8 @@ import { ProductOrder } from "src/app/core/models/requests/product-order.model";
 })
 export class OrderParentComponent implements OnInit, OnDestroy {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
-  product: ProductOrder;
-  constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute
-  ) {}
+  product: ProductOrderModel;
+  constructor() {}
 
   ngOnInit() {
     this.product = JSON.parse(localStorage.getItem("ProductOrder"));

@@ -1,13 +1,15 @@
 <div class="search-item" [ngClass]="routeAnimationsElements">
   <span class="md-inputfield">
-    <input
-      type="text"
-      pInputText
-      placeholder="Search"
-      class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-      (input)="onSearch()"
-      [(ngModel)]="search"
-    />
+    <input type="text" pInputText placeholder="Search" class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+      (input)="onSearch()" [(ngModel)]="search" />
     <i class="pi pi-search"></i>
   </span>
+</div>
+<div class="ui-g-12">
+  <h1>
+    Sort By
+    <p-dropdown [options]="sortedOptions" (onChange)="sortBy()" [(ngModel)]="selectedOption" placeholder="Sort by"
+      [group]="true">
+    </p-dropdown>
+  </h1>
 </div>

@@ -1,5 +1,5 @@
-import { Product } from "./product.model";
+import { ProductModel } from "./product.model";
 
-export interface Card {
-  product: Product;
+export interface CardModel {
+  product: ProductModel;
 }

@@ -5,21 +5,21 @@ import { SelectItem } from "primeng";
 import { FormGroup } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ProductService } from "src/app/core/services/product.service";
-import { Product } from "src/app/core/models/responses/product.model";
-import { setCurrentRoute } from "../../share/helpers/current-route";
-import { ProductOrder } from "src/app/core/models/requests/product-order.model";
+import { ProductModel } from "src/app/core/models/responses/product.model";
+import { setCurrentRoute } from "../../share/helpers/functions/current-route";
+import { ProductOrderModel } from "src/app/core/models/requests/product-order.model";
 import { Observable, of } from "rxjs";
 import { LoginResponse } from "src/app/auth/models/login-response.model";
 import { AWSService } from "src/app/core/services/AWS.service";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { convertUint8ArrayToBase64 } from "../../share/helpers/image-converter";
+import { convertUint8ArrayToBase64 } from "../../share/helpers/functions/image-converter";
 
 @Component({
   selector: "app-product-parent",
   templateUrl: "./product-parent.component.html",
 })
 export class ProductParentComponent implements OnInit {
-  product$: Observable<Product>;
+  product$: Observable<ProductModel>;
   productForm: FormGroup;
   images: any[];
   sizes: SelectItem[];
@@ -64,7 +64,7 @@ export class ProductParentComponent implements OnInit {
       });
     });
   }
-  onBuy(product: ProductOrder) {
+  onBuy(product: ProductOrderModel) {
     let user: LoginResponse;
     this.authService.currentUser.subscribe((us) => (user = us));
     setCurrentRoute(this.router.url);

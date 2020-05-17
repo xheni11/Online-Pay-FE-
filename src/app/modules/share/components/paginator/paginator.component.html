@@ -1,35 +1,18 @@
-<ul
-  class="pagination justify-content-end"
-  *ngIf="hasPagination == true && totalEntities > 0"
->
+<ul class="pagination justify-content-end" *ngIf="hasPagination == true && totalEntities > 0">
   <div class="font-weight-bold">
     Showing {{ getMin() }} - {{ getMax() }} of {{ totalEntities }} entries
     &nbsp; &nbsp;
   </div>
   <li class="page-item">
-    <button
-      (click)="goPrev()"
-      [disabled]="currentPage == 1"
-      class="page-link"
-      [ngStyle]="{ background: currentPage == 1 ? '#dddddd' : '#fff' }"
-    >
-      <<
-    </button>
-  </li>
-  <li
-    class="page-item"
-    *ngFor="let item of listPages()"
-    [ngClass]="{ active: currentPage == item }"
-  >
-    <button class="page-link" (click)="goPage(item)">{{ item }}</button>
+    <button (click)="goPrev()" [disabled]="currentPage == 0" class="page-link"
+      [ngStyle]="{ background: currentPage == 0 ? '#dddddd' : '#fff' }">
+      << </button> </li> <li class="page-item" *ngFor="let item of listPages()"
+        [ngClass]="{ active: currentPage == item-1 }">
+        <button class="page-link" (click)="goPage(item-1)">{{ item }}</button>
   </li>
   <li class="page-item">
-    <button
-      (click)="goNext()"
-      [disabled]="lastPage()"
-      class="page-link"
-      [ngStyle]="{ background: lastPage() ? '#dddddd' : '#fff' }"
-    >
+    <button (click)="goNext()" [disabled]="lastPage()" class="page-link"
+      [ngStyle]="{ background: lastPage() ? '#dddddd' : '#fff' }">
       >>
     </button>
   </li>

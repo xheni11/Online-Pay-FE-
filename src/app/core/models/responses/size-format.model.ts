@@ -1,4 +1,4 @@
-export interface SizeFormat {
+export interface SizeFormatModel {
   id: number;
   name: string;
 }

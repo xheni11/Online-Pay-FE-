@@ -1,6 +1,6 @@
-import { Sort } from "./sort.model";
-export interface Pageable {
-  sort: Sort;
+import { SortModel } from "./sort.model";
+export interface PageableModel {
+  sort: SortModel;
   offset: number;
   pageNumber: number;
   pageSize: number;

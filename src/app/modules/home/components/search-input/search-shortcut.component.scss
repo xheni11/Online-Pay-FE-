@@ -1,28 +1,34 @@
 :host {
   cursor: pointer;
+
   &.hover-search {
     .search-item input {
       box-shadow: 4px 0px 22px -9px rgba(0, 0, 0, 0.2);
       transform: scale(1.01);
     }
   }
+
   width: 100%;
+
   label {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
   .search-item {
     position: relative;
     color: #777777;
   }
+
   .search-item i {
     position: absolute;
     left: 4px;
     top: 6px;
     margin-right: 0.4em;
   }
+
   .search-item input {
     background: #ffffff;
     padding: 0.5em;
@@ -35,4 +41,9 @@
     padding-left: 20px;
     width: 100%;
   }
+}
+
+.sort-custom {
+  background-color: black !important;
+  color: white !important;
 }

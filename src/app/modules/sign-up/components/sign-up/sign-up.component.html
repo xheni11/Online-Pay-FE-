@@ -1,0 +1,46 @@
+<form [formGroup]="signUpForm">
+  <div class="ui-g-12">
+    <input type="text" formControlName="firstName" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="First Name" />
+    <app-input-validator [control]="firstNameControl" [fieldName]="['First Name']" [maxLength]="20">
+    </app-input-validator>
+  </div>
+  <div class="ui-g-12">
+    <input type="text" formControlName="lastName" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Last Name" />
+    <app-input-validator [control]="lastNameControl" [fieldName]="['Last Name']" [maxLength]="20">
+    </app-input-validator>
+  </div>
+  <div class="ui-g-12">
+    <input type="text" formControlName="userName" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Username" />
+    <app-input-validator [control]="userNameControl" [fieldName]="['Userame']" [maxLength]="20">
+    </app-input-validator>
+  </div>
+  <div class="ui-g-12">
+    <input type="text" formControlName="email" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Email" />
+    <app-input-validator [control]="emailControl" [fieldName]="['Email']" [maxLength]="20"></app-input-validator>
+  </div>
+  <div class="ui-g-12">
+    <input type="password" formControlName="password" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Password" />
+    <app-input-validator [control]="passwordControl" [fieldName]="['Password']" [maxLength]="20">
+    </app-input-validator>
+  </div>
+  <div class="ui-g-12">
+    <input type="password" formControlName="confirmPassword" autocomplete="off"
+      class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Confirm Password" />
+    <app-input-validator [control]="confirmPasswordControl" [fieldName]="['Confirm Password']" [maxLength]="20"
+      [minLength]="['6']" [patternText]="[
+            '  duhet te kete te pakten nje shkronje te madhe, 1 numer dhe 1 shkronje te vogel!'
+          ]"></app-input-validator>
+  </div>
+  <div class="ui-g-12 button-container">
+    <button (click)="signUp()"
+      class="ui-button  ui-button-secondary ui-widget ui-state-default  ui-button-text-icon-left">
+      <span class="ui-button-icon-left ui-c fa fa-fw fa-user-plus"></span>
+      <span class="ui-button-text ui-c">Sign up</span>
+    </button>
+  </div>
+</form>

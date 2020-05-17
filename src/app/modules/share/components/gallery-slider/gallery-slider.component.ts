@@ -6,6 +6,7 @@ import { Component, OnInit, Input, OnChanges } from "@angular/core";
   templateUrl: "./gallery-slider.component.html",
   styleUrls: ["./gallery-slider.component.css"],
 })
+//TODO improve this component
 export class GallerySliderComponent implements OnInit, OnChanges {
   @Input() images: any[];
   @Input() mainImage: any;
