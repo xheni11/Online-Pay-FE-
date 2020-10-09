@@ -64,7 +64,6 @@ export class SearchShortcutComponent implements OnInit {
     this.searching.emit(this.search.trim());
   }
   sortBy() {
-    console.log(this.selectedOption);
     this.onSortBy.emit(this.selectedOption);
   }
 }

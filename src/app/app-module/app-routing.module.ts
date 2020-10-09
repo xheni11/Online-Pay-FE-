@@ -1,3 +1,4 @@
+import { WishListModule } from "./../modules/wish-list/wish-list.module";
 import { ShippingInformationModule } from "./../modules/shipping-information/shipping-information.module";
 import { guards, AuthGuard } from "./../auth/guards/index";
 import { NgModule } from "@angular/core";
@@ -42,6 +43,14 @@ const routes: Routes = [
     path: "signUp",
     loadChildren: () =>
       import("../modules/sign-up/sign-up.module").then((m) => m.SignUpModule),
+    data: {},
+  },
+  {
+    path: "wishList",
+    loadChildren: () =>
+      import("../modules/wish-list/wish-list.module").then(
+        (m) => m.WishListModule
+      ),
     data: {},
   },
 ];

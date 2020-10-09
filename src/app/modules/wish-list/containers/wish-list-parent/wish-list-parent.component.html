@@ -1,0 +1,21 @@
+<div class="dashboard">
+  <div class="card card-w-title ui-g-12">
+    <div class="ui-g-12">
+      <h1>
+
+      </h1>
+
+      <div class="ui-g-12">
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <app-wish-list hover-card [animationStatus]=" false" [products]="products">
+            </app-wish-list>
+          </div>
+          <app-paginator [hasPagination]="true" [totalEntities]="[totalEntities]" [totalPages]="totalPages"
+            [currentPage]="currentPage" [perPage]="perPage" (onNext)="onNextPage($event)" (onPage)="onPage($event)"
+            (onPrev)="onPrevPage($event)"></app-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

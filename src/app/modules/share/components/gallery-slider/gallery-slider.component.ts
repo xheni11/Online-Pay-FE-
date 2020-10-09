@@ -1,4 +1,3 @@
-import { GallerySliderService } from "./../../../../core/services/gallery-slider.service";
 import { Component, OnInit, Input, OnChanges } from "@angular/core";
 
 @Component({
@@ -11,7 +10,7 @@ export class GallerySliderComponent implements OnInit, OnChanges {
   @Input() images: any[];
   @Input() mainImage: any;
   slideIndex: number;
-  constructor(private galleryService: GallerySliderService) {}
+  constructor() {}
   ngOnInit(): void {
     // this.loadImages();
     this.slideIndex = 0;

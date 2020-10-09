@@ -1,24 +1,26 @@
+import { LoginResponse } from "./../../auth/models/login-response.model";
+import { AuthenticationService } from "./../../auth/services/authetication.service";
+import { Injectable } from "@angular/core";
 import { SortValueModel } from "./../models/requests/sort-values";
 import { PaginatorConfig } from "../../modules/share/helpers/constants/pagination-config";
 import { ContentProductModel } from "./../models/responses/content-product.model";
 
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Observable, throwError, of } from "rxjs";
 import { ProductModel } from "../models/responses/product.model";
 import { retry, catchError } from "rxjs/operators";
-
+import { User } from "aws-sdk/clients/appstream";
 @Injectable({
   providedIn: "root",
 })
-export class ProductService {
-  private readonly URL: string = environment.baseUrl + "/product";
+export class WishListService {
+  private readonly URL: string = environment.baseUrl + "/product/wishList";
   products: ProductModel[];
   product: ProductModel;
+  currentUser: LoginResponse;
   constructor(private http: HttpClient) {}
-
-  getProducts(
+  getWishList(
     currentPage: number,
     sortModel?: SortValueModel
   ): Observable<ContentProductModel> {
@@ -41,11 +43,5 @@ export class ProductService {
           catchError((error: any) => throwError(error))
         );
     }
-  }
-  getProduct(id: number): Observable<ProductModel> {
-    return this.http.get<ProductModel>(`${this.URL}/${id}`).pipe(
-      retry(1),
-      catchError((error: any) => throwError(error))
-    );
   }
 }
